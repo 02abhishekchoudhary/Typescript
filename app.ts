@@ -1,22 +1,38 @@
-/* ADVANCE FUNCTION TYPES */
+/* Interfaces */
+// Interfaces is a programming structure/syntax that allows the computer to enforxe certain properties on an object(class)
 
-// rest paramter
-function sum(...numbers: number[]) {}
-sum(1, 2, 3);
-sum();
-sum(1, 2, 3, 4, 5, 6);
-
-// Overloaded functions: is a function that has different call signatures and can accept different types
-function getItemLength(name: string): number;
-function getItemLength(name: string[]): number;
-function getItemLength(nameOrNames: unknown): number {
-  if (typeof nameOrNames === "string") {
-    return nameOrNames.length;
-  } else if (Array.isArray(nameOrNames)) {
-    return nameOrNames.length;
-  }
-  return 0;
+interface Person {
+  name: string;
+  age: number;
+  height?: number;
+  // hello: () => void;
 }
 
-getItemLength("");
-getItemLength(["", ""]);
+const person: Person = {
+  name: "Naruto",
+  age: 21,
+  // hello: function () {
+  //   console.log(this.name + " says hi");
+  // },
+};
+// person.hello();
+
+// Interfaces allows us to interact with more complex objects and understand what properties they have.
+
+interface Employee extends Person {
+  eID: number;
+}
+
+const worker: Employee = {
+  name: "Itachi",
+  age: 21,
+  height: 175,
+  eID: 4,
+};
+
+function getPerson(p: Person): Person {
+  return {
+    name: "Naruto",
+    age: 21,
+  };
+}
