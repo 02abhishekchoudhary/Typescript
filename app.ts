@@ -1,24 +1,37 @@
-/* Array & Tuples */
+/* LITERALS AND ENUMS */
 
-// ARRAY
-var arr = [1, 2, 3, "hello"];
-var numArr: number[] = [1, 2, 3];
-var strArr: string[] = ["a", "b", "c"];
+// Literal is a textual representation (notation) of a value as it is written in source code
+let direction: "north" | "south" | "east" | "west";
 
-// Nested array
+let responseCode: 200 | 404 | 402;
 
-var nestedArr: string[][] = [["a"], ["b"], ["c"]];
-var anyTypeArr = [];
+// Enums: enables developers to establish a collection of named constants (enumerators), each linked with an integer value.
+// numeric enums:
 
-// TUPLES : is a fixed length array that has defined for each position in the array.
-const coord: [number, number] = [1, 2];
-const coord2: [number, string] = [1, "2"];
-const coord3: [number, number, number] = [1, 2, 3];
-console.log(coord[1]);
+enum Size {
+  Smallest = 100,
+  Medium,
+  Large,
+}
 
-const coords: [number, number][] = [
-  [1, 2],
-  [3, 4],
-];
+var size: Size = Size.Smallest;
 
-coords[0][1];
+if (size === Size.Smallest) {
+}
+
+// String enums
+
+enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+
+enum Description {
+  SmallText = "this is some small text",
+}
+console.log(Description.SmallText);
+
+// Enums are treated as data types, and you can use them to create sets of constants for use with variables and properties.
+var value = Direction;
