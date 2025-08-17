@@ -1,17 +1,52 @@
-/* OPTIONAL CHAINING AND BANG  */
-// Question mark and Exclamation point operators allows us to check and deal with undefined values within Typescript
+/* FUNCTION TYPES */
+function add(x: number, y: number) {
+  if (x == 0) {
+    return "invalid";
+  }
+  return x + y;
+}
 
-// ?
-// checking and then move forward
-const arr = [{ name: "Naruto" }, { name: "Itachi" }, { name: "Kakashi" }];
-// const el = arr.pop().name;
-const el = arr.pop()?.name;
+// OPtional parameter
+function makeName(firstName: string, lastName: string, middleName?: string) {
+  if (middleName) return firstName + " " + middleName + " " + lastName;
+  return firstName + " " + lastName;
+}
+const fullName = makeName("Naruto", "Uzumaki");
 
-const arr2 = [[{ name: "Itachi Uchia" }]];
-const el2 = arr2.pop()?.pop()?.name;
+// Default parameter
+function makeName1(firstName: string, lastName: string, middleName = "Kumar") {
+  if (middleName) return firstName + " " + middleName + " " + lastName;
+  return firstName + " " + lastName;
+}
+const fullName1 = makeName1("Naruto", "Uzumaki");
 
-// ! (bang)
-// Forcing us to move forward
-// bang operator tells the compiler to ignore the possibility of it being undefined
-const arr3 = [[{ name: "Itachi Uchia" }]];
-const el3 = arr2.pop()!.pop()!.name;
+// Function takess function as parameter
+
+function mul(x: number, y: number): number {
+  return x * y;
+}
+
+function div(x: number, y: number): number {
+  return x / y;
+}
+
+function applyFunc(
+  funcs: ((a: number, b: number) => number)[],
+  values: [number, number][]
+): number[] {
+  const results = [] as number[];
+  for (let i = 0; i < funcs.length; i++) {
+    const args = values[i];
+    const result = funcs[i](args[0], args[1]);
+    results.push(result);
+  }
+  return results;
+}
+
+applyFunc(
+  [mul, div],
+  [
+    [1, 2],
+    [4, 5],
+  ]
+);
