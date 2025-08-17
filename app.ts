@@ -1,61 +1,43 @@
-/* OOP : Classes and Abstract classes  */
-class Person {
-  // name: string;
-  // private name: string;
-  // By making a method private, you tell other programmers that this method is not intended to be accessed directly.
-  // By default its public and accessible.
-  protected name: string;
-  // Protected specifies access to class members in the member-list up to the next access specifier(public or private) or the end of the class definition
-  constructor(name: string) {
+/* Classes & Interfaces */
+interface Animal {
+  speak(): void;
+}
+
+class Dog implements Animal {
+  private name: string;
+  private color: string;
+
+  constructor(name: string, color: string) {
     this.name = name;
-  }
-  greet() {
-    console.log(`Hello, my name is ${this.name}`);
+    this.color = color;
   }
 
-  getName() {
-    return this.name;
+  speak() {
+    console.log(`I am ${this.name} and I am ${this.color}`);
   }
-  setName(name: string) {
-    this.name = name;
-  }
-}
 
-// Protected
-class Employee extends Person {
-  callMe() {
-    console.log(this.name);
+  test() {
+    return 1;
   }
 }
 
-const p1 = new Person("Naruto");
-// p1.name = "Itachi";
-// p1.getName();
+// const dog: Animal = new Dog("Pakun", "Brown");
 
-/* ABSTRACT CLASS */
-// Abstract class is a restricted class that cannot be used to create objects and designed to be specifically used as a base class.
-
-abstract class Animal {
-  abstract makeSound(duration: number): void;
-  move(duration: number) {
-    console.log("Moving along.......");
-    this.makeSound(duration);
-  }
-}
-// Abstract class is meant to act as a base class that will be inherited from by a subclass.
-
-class Dog extends Animal {
-  makeSound(duration: number) {
-    console.log("woof woof");
-  }
-}
-class Cat extends Animal {
-  makeSound(duration: number) {
-    console.log("meow meow");
+class Cat implements Animal {
+  speak() {
+    console.log("meow");
   }
 }
 
-const dog = new Dog();
-dog.move(10);
+const dog = new Dog("Pakun", "Brown");
+const cat = new Cat();
 
-// Any abstract method is typically gonna be utilized by a concrete implementation in the abstarct class
+const animals: Animal[] = [cat, dog];
+
+function makeSound(animal: Animal) {
+  animal.speak();
+}
+makeSound(cat);
+
+// Use an interface when there's no functionality that you want to define concretely
+// By using an abstract class, you are going to be writing a behavior that will be reuse by one of the concrete classes.
