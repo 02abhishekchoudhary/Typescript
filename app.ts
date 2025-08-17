@@ -1,43 +1,20 @@
-/* Classes & Interfaces */
-interface Animal {
-  speak(): void;
-}
+/* STATIC ATTRIBUTES & METHODS */
+class Dog {
+  static instaceCount: number = 0;
+  name: string;
 
-class Dog implements Animal {
-  private name: string;
-  private color: string;
-
-  constructor(name: string, color: string) {
+  constructor(name: string) {
+    Dog.instaceCount++;
     this.name = name;
-    this.color = color;
   }
-
-  speak() {
-    console.log(`I am ${this.name} and I am ${this.color}`);
-  }
-
-  test() {
-    return 1;
+  static decreaseCount() {
+    this.instaceCount--;
   }
 }
 
-// const dog: Animal = new Dog("Pakun", "Brown");
-
-class Cat implements Animal {
-  speak() {
-    console.log("meow");
-  }
-}
-
-const dog = new Dog("Pakun", "Brown");
-const cat = new Cat();
-
-const animals: Animal[] = [cat, dog];
-
-function makeSound(animal: Animal) {
-  animal.speak();
-}
-makeSound(cat);
-
-// Use an interface when there's no functionality that you want to define concretely
-// By using an abstract class, you are going to be writing a behavior that will be reuse by one of the concrete classes.
+const dog1 = new Dog("Pakun");
+console.log(Dog.instaceCount);
+const dog2 = new Dog("Pakun");
+console.log(Dog.instaceCount);
+Dog.decreaseCount();
+console.log(Dog.instaceCount);

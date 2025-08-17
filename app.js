@@ -1,10 +1,21 @@
 "use strict";
-// Error
-// function test(x: number): number { }
 Object.defineProperty(exports, "__esModule", { value: true });
-// test("hello");
-function test(x) {
-    return x + 1;
+/* STATIC ATTRIBUTES & METHODS */
+class Dog {
+    static instaceCount = 0;
+    name;
+    constructor(name) {
+        Dog.instaceCount++;
+        this.name = name;
+    }
+    static decreaseCount() {
+        this.instaceCount--;
+    }
 }
-console.log(test(2));
+const dog1 = new Dog("Pakun");
+console.log(Dog.instaceCount);
+const dog2 = new Dog("Pakun");
+console.log(Dog.instaceCount);
+Dog.decreaseCount();
+console.log(Dog.instaceCount);
 //# sourceMappingURL=app.js.map
