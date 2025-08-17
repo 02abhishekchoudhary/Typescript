@@ -1,35 +1,24 @@
-/* PRIMITIVES TYPES */
+/* Array & Tuples */
 
-// 1. Number
-// Explicit type
-let x: number = 2;
+// ARRAY
+var arr = [1, 2, 3, "hello"];
+var numArr: number[] = [1, 2, 3];
+var strArr: string[] = ["a", "b", "c"];
 
-// Implicit type
-let y = 2;
+// Nested array
 
-let z: number;
-z = 3;
+var nestedArr: string[][] = [["a"], ["b"], ["c"]];
+var anyTypeArr = [];
 
-// 2. String
-let a: string;
-let b = 10;
-let c = "Pandas";
-a = `${b} ${c}`;
+// TUPLES : is a fixed length array that has defined for each position in the array.
+const coord: [number, number] = [1, 2];
+const coord2: [number, string] = [1, "2"];
+const coord3: [number, number, number] = [1, 2, 3];
+console.log(coord[1]);
 
-// 3. Boolean
-let d: boolean;
-d = true;
-d = false;
+const coords: [number, number][] = [
+  [1, 2],
+  [3, 4],
+];
 
-// Null : Use null when you want to explicitly define somethig as empty or non-existeent. Null will set type of any.
-let result = null;
-result = 2;
-result = "hello";
-
-// Undefined: is more used as a placeholder that means a variabe has been declared but has not yet been assigned a value.
-let result1 = undefined;
-result1 = "hello";
-result1 = 2;
-
-// Void: function returns nothing
-// Never : is used when we explicitly define thaat a function never returns
+coords[0][1];
