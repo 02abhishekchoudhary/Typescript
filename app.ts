@@ -1,37 +1,57 @@
-/* LITERALS AND ENUMS */
+/* ANY, UNKNOWN & TYPE CASTS */
 
-// Literal is a textual representation (notation) of a value as it is written in source code
-let direction: "north" | "south" | "east" | "west";
+// ANY: type allows for flexible typing but sacrifices type ssafety as it lacks compile-time type checking.
+let x: any = 1;
+x();
+x.length;
 
-let responseCode: 200 | 404 | 402;
+let y: number = 1;
+y.length; // Error because length method is not for number types
 
-// Enums: enables developers to establish a collection of named constants (enumerators), each linked with an integer value.
-// numeric enums:
+// Use any type typically when you're in a very complex situation and you're not able to predict what the type of the variables gonna be.
 
-enum Size {
-  Smallest = 100,
-  Medium,
-  Large,
+// UNKnown type is a type safe counterpart of the any type
+// Unknown type provides a powerful way to handle values of uncertain types while maintaining type safety
+
+let a: unknown = 1;
+if (typeof a == "number") {
+  const result = a + 1;
+} else if (typeof a == "string") {
+  const result = x.length;
 }
 
-var size: Size = Size.Smallest;
+// TYPE CAST
+let b: unknown = 1;
+const result = (x as number) + 1;
+const result1 = (x as string).length;
+const result12 = (x as number[][])[0][1]; // Crash at runtime because x is not as this type
 
-if (size === Size.Smallest) {
+// Any type use
+
+function processFeeedback(input: any): void {
+  // Assume we can perform any operation without explicit type checks
+  console.log(`Processing: ${input}`);
 }
 
-// String enums
+// This can be a string, number, file etc
+processFeeedback("Hello"); // Works
+processFeeedback(5); // Works
+processFeeedback(new Blob()); // Works
 
-enum Direction {
-  Up = "UP",
-  Down = "DOWN",
-  Left = "LEFT",
-  Right = "RIGHT",
+// Unknown type use
+function processFeeedbackUnknown(input: unknown): void {
+  if (typeof input === "string") {
+    console.log(`Processing text: ${input}`);
+  } else if (typeof input === "number") {
+    console.log(`Processing rating: ${input}`);
+  } else if (input instanceof Blob) {
+    console.log(`Processing file`);
+  } else {
+    console.log("Unsupported type of input");
+  }
 }
 
-enum Description {
-  SmallText = "this is some small text",
-}
-console.log(Description.SmallText);
-
-// Enums are treated as data types, and you can use them to create sets of constants for use with variables and properties.
-var value = Direction;
+processFeeedbackUnknown("Hello");
+processFeeedbackUnknown(5);
+processFeeedbackUnknown(new Blob());
+processFeeedbackUnknown([1, 2, 3]);
