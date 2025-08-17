@@ -1,22 +1,7 @@
-/* GENERICS */
-class DataStore<T> {
-  private items: number[] = [];
+/* ALIASES */
 
-  addItem(item: T): void {
-    this.items.push(item);
-  }
+type Coordinate = [number, number];
 
-  getItem(index: number): number {
-    return this.items[index];
-  }
-
-  removeItem(index: number): void {
-    this.items.splice(index, 1);
-  }
-
-  getAllItems(): T[] {
-    return this.items;
-  }
+function compareCoords(p1: Coordinate, p2: Coordinate): Coordinate {
+  return [p1[0], p2[1]];
 }
-
-const data = new DataStore<string>();
