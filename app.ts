@@ -1,20 +1,22 @@
-/* STATIC ATTRIBUTES & METHODS */
-class Dog {
-  static instaceCount: number = 0;
-  name: string;
+/* GENERICS */
+class DataStore<T> {
+  private items: number[] = [];
 
-  constructor(name: string) {
-    Dog.instaceCount++;
-    this.name = name;
+  addItem(item: T): void {
+    this.items.push(item);
   }
-  static decreaseCount() {
-    this.instaceCount--;
+
+  getItem(index: number): number {
+    return this.items[index];
+  }
+
+  removeItem(index: number): void {
+    this.items.splice(index, 1);
+  }
+
+  getAllItems(): T[] {
+    return this.items;
   }
 }
 
-const dog1 = new Dog("Pakun");
-console.log(Dog.instaceCount);
-const dog2 = new Dog("Pakun");
-console.log(Dog.instaceCount);
-Dog.decreaseCount();
-console.log(Dog.instaceCount);
+const data = new DataStore<string>();
