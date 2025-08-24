@@ -23,11 +23,25 @@ const App = () => {
     });
     setTodos(newTodos);
   };
+
   const deleteHandler = (id: TodoItemType["id"]): void => {
     alert(id);
     const newTodos: TodoItemType[] = todos.filter((i) => i.id !== id);
     setTodos(newTodos);
   };
+
+  const editHandler = (
+    id: TodoItemType["id"],
+    newTitle: TodoItemType["title"]
+  ): void => {
+    alert(id);
+    const newTodos: TodoItemType[] = todos.map((i) => {
+      if (i.id === id) i.title = newTitle;
+      return i;
+    });
+    setTodos(newTodos);
+  };
+
   const submitHandler = (): void => {
     const newTodo: TodoItemType = {
       title,
@@ -50,6 +64,7 @@ const App = () => {
           <TodoItem
             completeHandler={completeHandler}
             deleteHandler={deleteHandler}
+            editHandler={editHandler}
             key={i.id}
             todo={i}
           />
